@@ -11,6 +11,7 @@
 Classe-base que representa qualquer pessoa do sistema (possui nome, CPF etc.).
 # Pilares: 
 Abstração: representa uma pessoa de forma genérica.
+
 Herança: outras classes (Cliente, Funcionário, Garçom) herdam dela.
 
 # 2. Cliente.py
@@ -18,6 +19,7 @@ Herança: outras classes (Cliente, Funcionário, Garçom) herdam dela.
 Representa o cliente do restaurante. Possui informações específicas (ex.: mesa).
 # Pilares:
 Herança: herda de Pessoa.
+
 Polimorfismo: adiciona atributos e comportamentos próprios de um cliente.
 
 # 3. Funcionarios.py
@@ -25,6 +27,7 @@ Polimorfismo: adiciona atributos e comportamentos próprios de um cliente.
 Classe que representa funcionários gerais do restaurante.
 # Pilares:
 Herança: herda de Pessoa.
+
 Polimorfismo: pode ter métodos sobrescritos por subclasses (como Garçom).
 
 # 4. Garcom.py
@@ -32,6 +35,7 @@ Polimorfismo: pode ter métodos sobrescritos por subclasses (como Garçom).
 Classe que representa os garçons.
 # Pilares:
 Herança: herda de Funcionarios.
+
 Polimorfismo: pode implementar ações específicas, como registrar pedidos.
 
 # 5. ItemCardapio.py
@@ -39,43 +43,39 @@ Polimorfismo: pode implementar ações específicas, como registrar pedidos.
 Classe-base para itens do cardápio. Define nome e preço.
 # Pilares:
 Abstração: é um item genérico.
+
 Herança: Prato, Bebida e Sobremesa herdam dessa classe.
 
-6. Prato.py
-
-Descrição:
+# 6. Prato.py
+# Descrição:
 Representa um prato do cardápio (ex.: lasanha, pizza).
-Pilares usados:
+# Pilares:
+Herança: herda de ItemCardapio.
+
+Polimorfismo: sobrescreve métodos como calcular_preco().
+
+# 7. Bebida.py
+# Descrição:
+Representa uma bebida (ex.: refrigerante, suco).
+# Pilares:
 
 Herança: herda de ItemCardapio.
 
-Polimorfismo: sobrescreve métodos como exibir_dados().
+Polimorfismo: sobrescreve métodos como calcular_preco().
 
-7. Bebida.py
-
-Descrição:
-Representa uma bebida (ex.: refrigerante, suco).
-Pilares usados:
-
-Herança de ItemCardapio.
-
-Polimorfismo ao customizar métodos.
-
-8. Sobremesa.py
-
-Descrição:
+# 8. Sobremesa.py
+# Descrição:
 Representa sobremesas (ex.: pudim, sorvete).
-Pilares usados:
+# Pilares:
 
-Herança
+Herança: herda de ItemCardapio.
 
-Polimorfismo
+Polimorfismo: sobrescreve métodos como calcular_preco().
 
-9. ItemFactory.py
-
-Descrição:
+# 9. ItemFactory.py
+# Descrição:
 Classe responsável por criar itens do cardápio usando o padrão Factory + Singleton.
-Pilares usados:
+# Pilares:
 
 Encapsulamento: controla a criação dos objetos.
 
@@ -83,28 +83,22 @@ Polimorfismo: cria diferentes tipos de itens usando o mesmo método.
 
 Padrões de projeto: Factory e Singleton.
 
-10. Pedido.py
-
-Descrição:
+# 10. Pedido.py
+# Descrição:
 Representa um pedido do cliente. Armazena itens, cliente, valor total e status.
-Pilares usados:
+# Pilares:
 
 Encapsulamento: manipula itens internamente (adicionar/remover).
 
 Associação: se relaciona com Cliente, Itens e Status.
 
-11. StatusPedido.py
-
-Descrição:
+# 11. StatusPedido.py
+# Descrição:
 Enum ou classe com os possíveis status do pedido (ex.: Em preparo, Finalizado).
-Pilares usados:
+# Pilares:
 
 Abstração: simplifica o controle do estado do pedido.
 
-12. teste.py / teste_Factory.py
-
-Descrição:
+# 12. teste.py / teste_Factory.py
+# Descrição:
 Arquivos usados apenas para testar o funcionamento das classes.
-Pilares usados:
-
-Não aplicam pilares diretamente, apenas executam o código.
