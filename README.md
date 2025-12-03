@@ -102,3 +102,137 @@ Abstração: simplifica o controle do estado do pedido.
 # 12. teste.py / teste_Factory.py
 # Descrição:
 Arquivos usados apenas para testar o funcionamento das classes.
+
+
+# Explicação dos padrões de projeto
+
+# FACTORY
+No sistema, a classe ItemFactory é responsável por criar os itens do cardápio:
+
+Prato
+
+Bebida
+
+Sobremesa
+
+Em vez de criar diretamente:
+```python
+prato = Prato("Lasanha", 32.50)
+````
+O sistema usa:
+```python
+prato = factory.criar_item("prato", nome="Lasanha", preco=32.50)
+````
+# SINGLETON
+A classe ItemFactory também implementa Singleton:
+```python
+factory = ItemFactory()
+f2 = ItemFactory()
+print(f1 is f2)  # True
+````
+
+# Isso significa que:
+
+- Não importa quantas vezes o sistema chame ItemFactory()
+
+- Sempre será retornada a mesma instância
+
+# Por que isso é útil aqui?
+
+- Garante que todos os itens são criados pelo mesmo mecanismo
+
+- Evita múltiplas fábricas conflitantes
+
+- Ajuda a manter o sistema organizado e consistente
+
+- Simplifica testes e manutenção
+
+# TESTES
+# Cadastro e exibição de um cliente
+```python
+cliente1 = Cliente("   maria silva  ", "123.456.789-99")
+lista_testes.append(cliente1)
+print(cliente1.exibir_dados())
+````
+
+# Cadastro e exibição de um garçom
+```python
+garcom1 = Garcom("  joão almeida  ", "097.456.764-98", 2500)
+lista_testes.append(garcom1)
+print(garcom1.exibir_dados())
+````
+
+# Criação dos itens do cardápio usando a ItemFactory
+```python
+prato1 = factory.criar_item(tipo_item="prato", nome="lasanha", preco=32.50)
+bebida1 = factory.criar_item(tipo_item="bebida", nome="coca-cola", preco=8.00)
+sobremesa1 = factory.criar_item(tipo_item="sobremesa", nome="pudim", preco=12.00)
+````
+
+# Teste do Singleton
+```python
+f1 = ItemFactory()
+f2 = ItemFactory()
+print(f1 is f2)
+````
+
+# Criação de um pedido
+```python
+pedido1 = Pedido(cliente1)
+pedido1.adicionar_item(prato1)
+pedido1.adicionar_item(bebida1)
+pedido1.adicionar_item(sobremesa1)
+````
+
+# Mudança de status do pedido
+```python
+pedido1.status = StatusPedido.EM_PREPARO
+````
+
+# Exibição completa do pedido
+```python
+pedido1.exibir_dados()
+````
+
+
+# SAÍDA
+```text
+---- CLIENTE ----
+Nome:    maria silva
+CPF: 123.456.789-99
+
+---- GARÇOM ----
+=== Dados do Garçom ===
+Nome:   joão almeida
+CPF: 097.456.764-98
+Salário: R$ 2500.00
+
+---- ITENS DO CARDÁPIO ----
+Prato:   lasanha bolonhesa  | Preço: R$32.50
+Bebida:  coca-cola lata  | Preço: R$8.00
+Sobremesa:  pudim tradicional  | Preço: R$12.00
+True
+
+ ---- PEDIDO ----
+Cliente:    maria silva
+CPF: 123.456.789-99
+Itens do pedido:
+-   lasanha bolonhesa  | R$ 32.50
+-  coca-cola lata  | R$ 8.00
+-  pudim tradicional  | R$ 12.00
+Total: R$ 52.50
+Status: Em preparo
+````
+
+# Teste Factory com Singleton
+Este teste demonstra como funciona a criação de itens do cardápio utilizando o padrão de projeto Factory combinado com Singleton.
+
+Pegando a instância única da fábrica (Singleton)
+```python
+factory = ItemFactory()
+```
+O ItemFactory foi implementado com Singleton, então:
+
+- Mesmo que você chame ItemFactory() várias vezes, sempre receberá a mesma instância.
+
+- Isso garante que a criação de itens do cardápio seja centralizada.
